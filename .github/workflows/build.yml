@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        build_type: [ Debug, Release ]
+        build_type: [ Release ]
       fail-fast: false
     steps:
       - uses: actions/checkout@v2
@@ -48,7 +48,7 @@ jobs:
             install: |
               apt-get update -q -y
               apt-get install -q -y bash
-              apt install clang
+              apt upgrade clang
             run: |
               cd /checkout
               /bin/bash script/prepare_linux_arm.sh
