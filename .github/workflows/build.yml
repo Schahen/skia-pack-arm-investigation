@@ -81,6 +81,9 @@ jobs:
             run: |
               cd /checkout
               /bin/bash script/prepare_linux_arm.sh
+              which clang++
+              clang++ --version
+              cat /etc/os-release
               python3 script/checkout.py --version ${build_version}
-              python3 script/build.py --build-type ${build_type}
+              python3 script/build.py --build-type ${build_type} 
               echo "Verified build"
