@@ -48,7 +48,6 @@ jobs:
             install: |
               apt-get update -q -y
               apt-get install -q -y bash
-              apt upgrade clang
             run: |
               cd /checkout
               /bin/bash script/prepare_linux_arm.sh
