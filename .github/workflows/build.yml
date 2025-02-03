@@ -16,7 +16,7 @@ permissions:
   contents: write
 
 env:
-  version: m132-9b3c42e2f9-arm-1
+  version: m126-6fd3120c1b-1
 
 jobs:
   linux-arm64:
