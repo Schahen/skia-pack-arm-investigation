@@ -79,6 +79,8 @@ jobs:
             run: |
               cd /checkout
               /bin/bash script/prepare_linux_arm.sh
+              uname -a
+              clang++ --version
               python3 script/checkout.py --version ${build_version}
               python3 script/build.py --build-type ${build_type} --build-type ${build_type}
               echo "Verified build"
