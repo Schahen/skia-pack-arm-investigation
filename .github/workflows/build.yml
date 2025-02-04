@@ -33,7 +33,7 @@ jobs:
         if: ${{ github.event.inputs.skip_release != 'true' && github.ref == 'refs/heads/main' }}
         with:
             arch: aarch64
-            distro: ubuntu20.04
+            distro: ubuntu22.04
             githubToken: ${{ secrets.GITHUB_TOKEN }}
             # Mount checkout directory as /checkout in the container
             dockerRunArgs: |
@@ -45,12 +45,12 @@ jobs:
               GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             # The shell to run commands with in the container
             shell: /bin/bash
-            install: |
-              apt-get update -q -y
-              apt-get install -q -y bash
             run: |
               cd /checkout
               /bin/bash script/prepare_linux_arm.sh
+              uname  -a
+              clang++ --version
+              git --version
               python3 script/check_release.py --version ${build_version} --build-type ${build_type}
               python3 script/checkout.py --version ${build_version}
               python3 script/build.py --build-type ${build_type}
@@ -82,6 +82,7 @@ jobs:
               /bin/bash script/prepare_linux_arm.sh
               which clang++
               clang++ --version
+              git --version
               cat /etc/os-release
               python3 script/checkout.py --version ${build_version}
               python3 script/build.py --build-type ${build_type} 
