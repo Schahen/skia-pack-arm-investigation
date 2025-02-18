@@ -13,3 +13,4 @@ add-apt-repository ppa:git-core/ppa -y
 apt-get update -y
 apt-get install python3 clang -y
 apt-get install git -y
+git --version
