@@ -10,4 +10,5 @@ apt-get install fontconfig libfontconfig1-dev libgl-dev -y
 apt-get install software-properties-common -y
 add-apt-repository ppa:git-core/ppa -y
 apt-get update -y
-apt-get install git clang -y
+apt-get install python3 clang -y
+apt-get install git -y
