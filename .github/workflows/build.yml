@@ -33,10 +33,12 @@ jobs:
         with:
             image: arm64v8/ubuntu:20.04
             # Mount checkout directory as /checkout in the container
-            options: -v ${{ github.workspace }}:/checkout -e BUILD_TYPE=${{ matrix.build_type }}
+            options: -v ${{ github.workspace }}:/checkout -e BUILD_TYPE=${{ matrix.build_type }} -e BUILD_VERSION=${{ env.version }} 
             # The shell to run commands with in the container
             shell: /bin/bash
             run: |
               cd /checkout
-              echo $BUILD_TYPE
+              echo $BUILD_TYPE $BUILD_VERSION
+              /bin/bash script/prepare_linux_arm.sh
+              python3 script/checkout.py --version $BUILD_VERSION
 
