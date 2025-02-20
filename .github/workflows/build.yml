@@ -28,9 +28,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: addnab/docker-run-action@v3
-        name: Assemble
+        name: Build Skia
         id: assemble
-        if: ${{ github.event.inputs.skip_release != 'true' && github.ref == 'refs/heads/main' }}
         with:
             image: arm64v8/ubuntu:20.04
             githubToken: ${{ secrets.GITHUB_TOKEN }}
@@ -52,15 +51,4 @@ jobs:
               python3 script/archive.py --version ${build_version} --build-type ${build_type}
               echo "Produced artifact at ${PWD}/${artifact_name}"
               apt-get install -q -y bash
-      - uses: actions/upload-artifact@v4
-        if: ${{ github.event.inputs.skip_release != 'true' && github.ref == 'refs/heads/main' }}
-        with:
-            name: Skia-${{ env.version }}-linux-${{ matrix.build_type }}-arm64.zip
-            path: '*.zip'
-        env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - run: python3 script/release.py --version ${{ env.version }} --build-type ${{ matrix.build_type }} --target linux --machine arm64
-        if: ${{ github.event.inputs.skip_release != 'true' && github.ref == 'refs/heads/main' }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
