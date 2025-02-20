@@ -38,7 +38,7 @@ jobs:
             shell: /bin/bash
             run: |
               cd /checkout
-              echo $BUILD_TYPE $BUILD_VERSION
               /bin/bash script/prepare_linux_arm.sh
               python3 script/checkout.py --version $BUILD_VERSION
+              python3 script/build.py --build-type $BUILD_TYPE
 
