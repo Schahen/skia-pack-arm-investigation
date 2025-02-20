@@ -35,11 +35,6 @@ jobs:
             githubToken: ${{ secrets.GITHUB_TOKEN }}
             # Mount checkout directory as /checkout in the container
             options: -v ${{ github.workspace }}:/checkout -e  build_type=${{ matrix.build_type }}  build_type=${{ matrix.build_type }} GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}
-            envVars: |
-              build_type: ${{ matrix.build_type }}
-              build_version: ${{ env.version }}
-              artifact_name: Skia-${{ env.version }}-linux-${{ matrix.build_type }}-arm64.zip
-              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             # The shell to run commands with in the container
             shell: /bin/bash
             run: |
