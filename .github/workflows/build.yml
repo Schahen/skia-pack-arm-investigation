@@ -20,7 +20,7 @@ env:
 
 jobs:
   linux-arm64:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04-arm
     strategy:
       matrix:
         build_type: [ Release ]
