@@ -34,7 +34,7 @@ jobs:
             image: arm64v8/ubuntu:20.04
             githubToken: ${{ secrets.GITHUB_TOKEN }}
             # Mount checkout directory as /checkout in the container
-            options: -v ${{ github.workspace }}:/checkout
+            options: -v ${{ github.workspace }}:/checkout -e build_type=${{ matrix.build_type }} build_version=${{ env.version }} artifact_name=Skia-${{ env.version }}-linux-${{ matrix.build_type }}-arm64.zip GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}
             env: |
               build_type: ${{ matrix.build_type }}
               build_version: ${{ env.version }}
@@ -48,7 +48,4 @@ jobs:
               python3 script/check_release.py --version ${build_version} --build-type ${build_type}
               python3 script/checkout.py --version ${build_version}
               python3 script/build.py --build-type ${build_type}
-              python3 script/archive.py --version ${build_version} --build-type ${build_type}
-              echo "Produced artifact at ${PWD}/${artifact_name}"
-              apt-get install -q -y bash
 
