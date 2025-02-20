@@ -35,7 +35,7 @@ jobs:
             githubToken: ${{ secrets.GITHUB_TOKEN }}
             # Mount checkout directory as /checkout in the container
             options: -v ${{ github.workspace }}:/checkout
-            env: |
+            envVars: |
               build_type: ${{ matrix.build_type }}
               build_version: ${{ env.version }}
               artifact_name: Skia-${{ env.version }}-linux-${{ matrix.build_type }}-arm64.zip
